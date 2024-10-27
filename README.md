@@ -36,10 +36,6 @@ Make sure you have the following installed:
 ```bash
 git clone https://github.com/Ashutoshpandey29/SmartCabAllocation.git
 cd SmartCabAllocation
-
-https://github.com/user-attachments/assets/9f486dc3-8fa2-4ce8-a05b-ab8dc86f57f4
-
-
 ```
 https://github.com/user-attachments/assets/b488545e-3c7b-4748-9a8d-f66d1945f0d1
 
