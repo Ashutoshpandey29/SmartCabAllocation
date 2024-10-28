@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useAuth } from "../context/AuthContext";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Loader from './Loader'; // Import the Loader component
+import Loader from './Loader'; 
 
 const CurrentTrip = () => {
     const { currentUser } = useAuth();
-    const user_id = currentUser.uid; // Access user ID
+    const user_id = currentUser.uid; 
     const [trips, setTrips] = useState([]);
     const [loading, setLoading] = useState(true);
 
