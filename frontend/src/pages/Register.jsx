@@ -3,13 +3,13 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
 
     const handleRegister = async () => {
         try {
@@ -47,7 +47,7 @@ const Register = () => {
                     Register
                 </button>
             </div>
-            <ToastContainer /> {/* Add ToastContainer for notifications */}
+            <ToastContainer /> 
         </div>
     );
 };
