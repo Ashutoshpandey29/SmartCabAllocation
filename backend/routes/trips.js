@@ -1,6 +1,6 @@
 import express from 'express';
-import { redisClient } from '../config/redis.js'; // Assuming Redis connection is in redis.js
-import connection from '../config/db.js'; // Assuming MySQL connection is in db.js
+import { redisClient } from '../config/redis.js'; 
+import connection from '../config/db.js'; 
 import router from './cabs.js';
 
 // Fetch ongoing trips for a specific user from Redis
@@ -8,11 +8,11 @@ router.get('/ongoingTrips/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const keys = await redisClient.keys('trip:*'); // Get all trip keys
+        const keys = await redisClient.keys('trip:*');
 
         const ongoingTrips = await Promise.all(keys.map(async (key) => {
             const tripData = await redisClient.hGetAll(key);
-            return tripData.userId === userId ? tripData : null; // Filter by userId
+            return tripData.userId === userId ? tripData : null; 
         }));
 
         const filteredOngoingTrips = ongoingTrips.filter(trip => trip !== null);
