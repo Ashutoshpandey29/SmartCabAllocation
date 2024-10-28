@@ -1,4 +1,3 @@
-// MapMarkers.jsx
 import PropTypes from "prop-types";
 import { AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
 
@@ -47,7 +46,7 @@ const MapMarkers = ({
           title={`Driver: ${cab.id}, Status: ${cab.status}`}
         >
            <img 
-            src={cab.status === 'booked' ? '/taxi_booked.png' : '/taxi1.png'} // Directly set src based on condition
+            src={cab.status === 'booked' ? '/taxi_booked.png' : '/taxi1.png'} 
             alt="Taxi" 
             style={{ width: '30px', height: '30px' }} // Adjust size as needed
           />
