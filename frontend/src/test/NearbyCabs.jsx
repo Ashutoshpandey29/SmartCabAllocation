@@ -15,12 +15,11 @@ const NearbyCabs = () => {
                 navigator.geolocation.getCurrentPosition(
                     position => {
                         const { latitude, longitude } = position.coords;
-                        console.log("User's current location:", { lat: latitude, lng: longitude }); // Debug: Log user location
+                        console.log("User's current location:", { lat: latitude, lng: longitude }); 
                         setUserLocation({ lat: latitude, lng: longitude });
                     },
                     () => {
                         setError("Location access denied. Please allow location access.");
-                        // Retry getting location after denial
                         setTimeout(getUserLocation, 5000);
                     }
                 );
@@ -37,24 +36,24 @@ const NearbyCabs = () => {
         if (userLocation) {
             fetchNearbyCabs(userLocation);
         }
-    }, [userLocation]); // Added dependency array to avoid infinite loop
+    }, [userLocation]); 
 
     const fetchNearbyCabs = async (location) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/cabs'); // Update the API endpoint
+            const response = await axios.get('http://localhost:5000/api/cabs'); 
             const allCabs = response.data;
 
-            console.log("Fetched cabs from API:", allCabs); // Debug: Log fetched cabs
+            console.log("Fetched cabs from API:", allCabs); 
 
             const nearby = allCabs.filter(cab => {
                 const distance = calculateDistance(location, cab.position);
-                console.log(`Distance between user and ${cab.cab_number}: ${distance} km`); // Debug: Log distance for each cab
-                return distance < 1000; // Distance in kilometers
+                console.log(`Distance between user and ${cab.cab_number}: ${distance} km`); 
+                return distance < 1000; 
             });
 
             setNearbyCabs(nearby);
 
-            console.log("Nearby cabs:", nearby); // Debug: Log the nearby cabs
+            console.log("Nearby cabs:", nearby); 
         } catch (err) {
             console.error('Error fetching cabs:', err);
             setError('Could not fetch cab locations.');
@@ -72,7 +71,7 @@ const NearbyCabs = () => {
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const distance = R * c; // Distance in kilometers
 
-        console.log("Calculated distance:", distance); // Debug: Log calculated distance
+        console.log("Calculated distance:", distance);
         return distance;
     };
 
