@@ -6,8 +6,8 @@ import axios from "axios";
 import useGeocode from "../hooks/useGeocode";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
-import Loader from "../components/Loader"; // Assuming you have a Loader component
+import "react-toastify/dist/ReactToastify.css"; 
+import Loader from "../components/Loader"; 
 // eslint-disable-next-line react/prop-types
 const NearestCabs = ({ source, destination }) => {
   const { currentUser } = useAuth();
@@ -16,8 +16,8 @@ const NearestCabs = ({ source, destination }) => {
   const cabs = useCabLocations();
   const { userLocation } = useUserLocation();
   const [nearbyCabs, setNearbyCabs] = useState({ available: [], booked: [] });
-  const [loading, setLoading] = useState(false); // State to manage loading
-  const [isBooking, setIsBooking] = useState(false); // State to manage booking status
+  const [loading, setLoading] = useState(false); 
+  const [isBooking, setIsBooking] = useState(false); 
   const {
     coordinates,
     // eslint-disable-next-line no-unused-vars
@@ -83,8 +83,8 @@ const NearestCabs = ({ source, destination }) => {
   }, [cabs, userLocation, coordinates]);
 
   const handleBookCab = async (cabId) => {
-    setIsBooking(true); // Start booking
-    setLoading(true); // Show loader
+    setIsBooking(true);
+    setLoading(true); 
     console.log("User_id", user_id);
     console.log("Cab_id", cabId);
     console.log("Source", source);
@@ -93,13 +93,13 @@ const NearestCabs = ({ source, destination }) => {
       const response = await axios.post(
         `http://localhost:5000/booking/bookCab/${cabId}`,
         {
-          userId: user_id, // Use userId as the key
-          source, // Keep source and destination as they are
+          userId: user_id, 
+          source, 
           destination,
         }
       );
       toast.success(`Cab booked successfully: ${response.data.message}`);
-      // Optionally refresh the cab list or state
+     
     } catch (error) {
       setLoading(false); // Hide loader
       toast.error(`Error booking cab: ${error.message}`);
