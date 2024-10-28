@@ -52,8 +52,8 @@ const LocationDisplay = () => {
 
     // Socket event listener for cab location updates
     socket.on('cabLocations', (updatedCabs) => {
-      console.log('Received updated cab locations:', updatedCabs); // Log updated cab locations
-      setCabs(updatedCabs); // Update cab state with new locations
+      console.log('Received updated cab locations:', updatedCabs); 
+      setCabs(updatedCabs); 
     });
 
     // Cleanup socket listener on component unmount
@@ -72,7 +72,7 @@ const LocationDisplay = () => {
         mapId={"CabMap"}
         className="map-container"
         defaultZoom={13}
-        defaultCenter={currentLocation} // Use the current location
+        defaultCenter={currentLocation} 
         onCameraChanged={(ev) =>
           console.log(
             "Camera changed:",
@@ -84,21 +84,21 @@ const LocationDisplay = () => {
       >
         {/* Marker for the current location */}
         <AdvancedMarker
-          position={currentLocation} // Use the current location for the marker
-          title="You are here" // Optional title for the marker
+          position={currentLocation} 
+          title="You are here"
         />
 
         {/* Markers for nearby cabs with custom icons */}
         {cabs.map((cab) => (
           <AdvancedMarker
             key={cab.id}
-            position={cab.position} // Position of the cab
+            position={cab.position} 
             title={`Cab ${cab.id}`}
           >
             <Pin
-              background={"#FBBC04"} // Custom background color for the cab icon
-              glyphColor={"#000"} // Custom glyph color
-              borderColor={"#000"} // Custom border color
+              background={"#FBBC04"} 
+              glyphColor={"#000"} 
+              borderColor={"#000"}
             />
           </AdvancedMarker>
         ))}
