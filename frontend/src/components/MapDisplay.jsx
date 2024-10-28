@@ -57,7 +57,7 @@ function Directions({ source, destination }) {
   const [directionsRenderer, setDirectionsRenderer] = useState();
   const [routes, setRoutes] = useState([]);
   const [routeIndex] = useState(0);
-  const [showTooltip, setShowTooltip] = useState(false); // State for tooltip visibility
+  const [showTooltip, setShowTooltip] = useState(false); 
   const selected = routes[routeIndex];
   const leg = selected?.legs[0];
 
@@ -107,8 +107,7 @@ function Directions({ source, destination }) {
             </div>
           </div>
   
-          {/* Tooltip on hover */}
-          <div className="absolute top-4 right-12 mb-10"> {/* Changed position */}
+          <div className="absolute top-4 right-12 mb-10"> 
             <button
               className="p-2 bg-blue-500 text-white rounded-lg"
               onMouseEnter={() => setShowTooltip(true)}
