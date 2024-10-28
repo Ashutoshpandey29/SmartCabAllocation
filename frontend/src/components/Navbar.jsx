@@ -1,12 +1,11 @@
-// src/components/Navbar.js
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext"; // Import AuthContext
+import { useAuth } from "../context/AuthContext"; 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { currentUser, logout } = useAuth(); // Get currentUser and logout function
+    const { currentUser, logout } = useAuth(); 
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
