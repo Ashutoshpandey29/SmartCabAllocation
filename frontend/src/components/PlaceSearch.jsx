@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import PropTypes from 'prop-types';
-import useUserLocation from "../hooks/useUserLocation"; // Import your custom hook
+import useUserLocation from "../hooks/useUserLocation"; 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toast notifications
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const PlacesSearch = ({ setSource, setDestination }) => {
   const [sourceInput, setSourceInput] = useState("");
@@ -46,11 +46,11 @@ const PlacesSearch = ({ setSource, setDestination }) => {
   const handleOptionClick = (option, type) => {
     if (type === "source") {
       setSourceInput(option);
-      setSource(option); // Update the parent's source state
+      setSource(option);
       setSourceOptions([]);
     } else {
       setDestinationInput(option);
-      setDestination(option); // Update the parent's destination state
+      setDestination(option); 
       setDestinationOptions([]);
     }
   };
