@@ -1,28 +1,27 @@
-// src/components/Login.js
 import { useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { auth, googleProvider } from "../firebaseConfig";
 import { Link, useNavigate } from "react-router-dom"; 
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth"; // Import for OTP
-import { setPersistence, browserLocalPersistence } from "firebase/auth"; // Import for setting persistence
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth"; 
+import { setPersistence, browserLocalPersistence } from "firebase/auth"; 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
     const [isForgotPassword, setIsForgotPassword] = useState(false);
-    const [phoneNumber, setPhoneNumber] = useState(""); // State for phone number
-    const [otp, setOtp] = useState(""); // State for OTP
-    const [isOtpSent, setIsOtpSent] = useState(false); // State to check if OTP is sent
-    const [confirmationResult, setConfirmationResult] = useState(null); // For OTP verification
-    const navigate = useNavigate(); // Hook for navigation
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [otp, setOtp] = useState(""); 
+    const [isOtpSent, setIsOtpSent] = useState(false);
+    const [confirmationResult, setConfirmationResult] = useState(null); 
+    const navigate = useNavigate();
 
 
     const handleEmailLogin = async () => {
         try {
-            await setPersistence(auth, browserLocalPersistence); // S
+            await setPersistence(auth, browserLocalPersistence); 
             await signInWithEmailAndPassword(auth, email, password);
             toast.success("Login successful!");
             navigate("/"); // Redirect to home page after successful login
@@ -33,7 +32,7 @@ const Login = () => {
 
     const handleGoogleLogin = async () => {
         try {
-            await setPersistence(auth, browserLocalPersistence); // S
+            await setPersistence(auth, browserLocalPersistence); 
             await signInWithPopup(auth, googleProvider);
             toast.success("Google login successful!");
             navigate("/"); // Redirect to home page after successful login
@@ -44,19 +43,16 @@ const Login = () => {
 
     const handleForgotPassword = async () => {
         try {
-            await setPersistence(auth, browserLocalPersistence); // S
+            await setPersistence(auth, browserLocalPersistence); 
             await sendPasswordResetEmail(auth, forgotPasswordEmail);
             toast.success("Password reset email sent!");
             setIsForgotPassword(false);
         } catch (error) {
             toast.error("Failed to send reset email.");
         }
-    };
-
-    // Inside your Login component
-    
+    };   
     const handleSendOtp = async () => {
-        const auth = getAuth(); // Ensure auth is correctly initialized
+        const auth = getAuth(); 
         // Set up reCAPTCHA verifier
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
             'size': 'invisible',
@@ -96,7 +92,7 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-200">
-            <div className="bg-white shadow-lg rounded-lg p-8 w-96 lg:w-1/3"> {/* Increased width */}
+            <div className="bg-white shadow-lg rounded-lg p-8 w-96 lg:w-1/3"> 
                 <div className="flex items-center justify-center mb-4">
                     <img src="google-logo.png" alt="Google Logo" className="w-12 h-12" />
                     <img src="gmail-logo.jpg" alt="Gmail Logo" className="w-20 h-20" />
@@ -204,7 +200,7 @@ const Login = () => {
                         </Link>
                     </div>
                 )}
-                <div id="recaptcha-container"></div> {/* Add reCAPTCHA container here */}
+                <div id="recaptcha-container"></div>
             </div>
             <ToastContainer />
         </div>
