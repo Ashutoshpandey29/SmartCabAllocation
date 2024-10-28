@@ -1,6 +1,6 @@
 import express from 'express';
-import { redisClient } from '../config/redis.js'; // Assuming Redis connection is in redis.js
-import connection from '../config/db.js'; // Assuming MySQL connection is in db.js
+import { redisClient } from '../config/redis.js'; 
+import connection from '../config/db.js'; 
 
 const router = express.Router();
 
@@ -12,10 +12,10 @@ router.get('/redis', async (req, res) => {
             cabKeys.map(async (key) => {
                 const cabData = await redisClient.hGetAll(key);
                 return {
-                    id: key.split(':')[1], // Extract cab ID from key
+                    id: key.split(':')[1],
                     latitude: parseFloat(cabData.latitude),
                     longitude: parseFloat(cabData.longitude),
-                    status: cabData.status, // Fetch status stored in Redis
+                    status: cabData.status,
                 };
             })
         );
@@ -72,7 +72,7 @@ router.post('/redis', async (req, res) => {
         await redisClient.hSet(cabKey, {
             latitude: latitude.toString(),
             longitude: longitude.toString(),
-            status: status, // Save status to Redis
+            status: status, 
         });
         res.status(201).json({ message: 'Cab data added to Redis' });
     } catch (err) {
