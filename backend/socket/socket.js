@@ -1,4 +1,4 @@
-import axios from 'axios'; // Make sure to install axios
+import axios from 'axios';
 import { redisClient } from '../config/redis.js';
 
 const setupSocket = (io) => {
@@ -12,10 +12,10 @@ const setupSocket = (io) => {
             console.log("Response from Redis:", redisResponse.data); // Log the raw response
 
             initialCabs = redisResponse.data.map(cab => ({
-                id: cab.id, // Ensure 'id' or fallback to 'cabId' if applicable
+                id: cab.id, 
                 latitude: cab.latitude,
                 longitude: cab.longitude,
-                status: cab.status // Fetch status stored in Redis
+                status: cab.status 
             }));
 
             console.log("Mapped cabs from Redis:", initialCabs); // Log the mapped data
@@ -30,7 +30,7 @@ const setupSocket = (io) => {
                     id: cab.id, 
                     latitude: cab.latitude,
                     longitude: cab.longitude,
-                    status: cab.status // Fetch status from MySQL
+                    status: cab.status 
                 }));
 
                 console.log("Mapped cabs from MySQL:", initialCabs); // Log the mapped data
@@ -42,7 +42,7 @@ const setupSocket = (io) => {
                             id: cab.id,
                             latitude: cab.latitude,
                             longitude: cab.longitude,
-                            status: cab.status, // Save status to Redis
+                            status: cab.status, 
                         });
                         console.log(`Inserted cab ${cab.id} into Redis.`);
                     } catch (populateError) {
@@ -64,7 +64,7 @@ const setupSocket = (io) => {
                     id: cab.id,
                     latitude: cab.latitude,
                     longitude: cab.longitude,
-                    status: cab.status // Fetch status from MySQL
+                    status: cab.status 
                 }));
 
                 console.log("Mapped cabs from MySQL:", initialCabs); // Log the mapped data
@@ -83,7 +83,7 @@ const setupSocket = (io) => {
                 return {
                     id: cab.id,
                     position: { lat: newLat, lng: newLng },
-                    status: cab.status // Maintain the current status
+                    status: cab.status
                 };
             });
 
@@ -101,7 +101,7 @@ const setupSocket = (io) => {
                         id: cab.id,
                         latitude: cab.position.lat,
                         longitude: cab.position.lng,
-                        status: cab.status, // Update status in Redis
+                        status: cab.status, 
                     });
                     console.log(`Updated cab ${cab.id} in Redis.`);
                 } catch (postError) {
