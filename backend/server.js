@@ -2,10 +2,10 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import configureCors from "./middlewares/cors.js";
-import cabs from "./routes/cabs.js"; // Import routes
-import setupSocket from "./socket/socket.js"; // Import socket logic
-import connection from "./config/db.js"; // Import the database connection
-import tables from "./models/tables.js"; // Import the function to create tables
+import cabs from "./routes/cabs.js"; 
+import setupSocket from "./socket/socket.js"; 
+import connection from "./config/db.js"; 
+import tables from "./models/tables.js"; 
 import map from "./routes/map.js";
 import trips from "./routes/trips.js";
 import booking from "./routes/booking.js";
@@ -36,7 +36,7 @@ const io = new Server(server, {
 
 //tables(); // Create tables if they don't exist
 
-setupSocket(io); // Setup socket.io logic
+setupSocket(io); 
 
 // Use routes
 app.use("/cabs", cabs);
