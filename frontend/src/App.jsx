@@ -38,9 +38,9 @@ function App() {
     return (
         <AuthProvider>
             <Router>
-                <div className="min-h-screen flex flex-col"> {/* Container for flex layout */}
+                <div className="min-h-screen flex flex-col"> 
                     <Navbar />
-                    <main className="flex-grow"> {/* Main content area */}
+                    <main className="flex-grow"> 
                         <Routes>
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
@@ -59,7 +59,7 @@ function App() {
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>
-                    <Footer /> {/* Footer will always be at the bottom */}
+                    <Footer />
                 </div>
             </Router>
         </AuthProvider>
