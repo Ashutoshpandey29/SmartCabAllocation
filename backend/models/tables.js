@@ -1,4 +1,4 @@
-import connection from "../config/db.js"; // Import the database connection
+import connection from "../config/db.js";
 
 // Function to create the cabs table
 const tables = async () => {
