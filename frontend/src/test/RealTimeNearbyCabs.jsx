@@ -1,9 +1,9 @@
 // src/NearbyCabs.jsx
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
-import { io } from 'socket.io-client'; // Import Socket.IO client
+import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:5000'); // Connect to the Socket.IO server
+const socket = io('http://localhost:5000');
 
 const RealTimeNearbyCabs = () => {
     const [userLocation, setUserLocation] = useState(null);
@@ -11,18 +11,17 @@ const RealTimeNearbyCabs = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Function to get user's current location
+       
         const getUserLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     position => {
                         const { latitude, longitude } = position.coords;
-                        console.log("User's current location:", { lat: latitude, lng: longitude }); // Debug: Log user location
+                        console.log("User's current location:", { lat: latitude, lng: longitude }); 
                         setUserLocation({ lat: latitude, lng: longitude });
                     },
                     () => {
                         setError("Location access denied. Please allow location access.");
-                        // Retry getting location after denial
                         setTimeout(getUserLocation, 5000);
                     }
                 );
@@ -36,18 +35,18 @@ const RealTimeNearbyCabs = () => {
 
     useEffect(() => {
         if (userLocation) {
-            // Listen for real-time cab updates
+            
             socket.on('cabLocations', (updatedCabs) => {
-                console.log('Received updated cab locations:', updatedCabs); // Debug: log updated cabs
+                console.log('Received updated cab locations:', updatedCabs); 
 
                 const nearby = updatedCabs.filter(cab => {
                     const distance = calculateDistance(userLocation, cab.position);
-                    console.log(`Distance between user and ${cab.id}: ${distance} km`); // Debug: Log distance for each cab
+                    console.log(`Distance between user and ${cab.id}: ${distance} km`); 
                     return distance < 2000; // Distance in kilometers
                 });
 
                 setNearbyCabs(nearby);
-                console.log("Nearby cabs:", nearby); // Debug: Log the nearby cabs
+                console.log("Nearby cabs:", nearby); 
             });
         }
 
@@ -67,7 +66,7 @@ const RealTimeNearbyCabs = () => {
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const distance = R * c; // Distance in kilometers
 
-        console.log("Calculated distance:", distance); // Debug: Log calculated distance
+        console.log("Calculated distance:", distance); 
         return distance;
     };
 
