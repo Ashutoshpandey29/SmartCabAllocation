@@ -1,9 +1,9 @@
-import { Rings } from "react-loader-spinner"; // Import the Rings loader
+import { Rings } from "react-loader-spinner"; 
 const Loader = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
-        className="absolute inset-0 bg-gray-800 bg-opacity-50" // Transparent grey background
+        className="absolute inset-0 bg-gray-800 bg-opacity-50" 
         style={{
           backdropFilter: 'blur(5px)', 
         }}
